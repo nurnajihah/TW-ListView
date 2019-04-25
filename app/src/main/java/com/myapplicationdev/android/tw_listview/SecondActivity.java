@@ -26,18 +26,21 @@ public class SecondActivity extends AppCompatActivity {
         lv = this.findViewById(R.id.lvModules);
         tvYear = this.findViewById(R.id.tvYear);
 
-        //Create Array in Modules Array
-        modules = new ArrayList<Modules>();
-        modules.add(new Modules("C208",true));
-        modules.add(new Modules("C200",false));
-        modules.add(new Modules("C346",true));
-
-        aa = new ModuleAdapter(this, R.layout.row, modules);
-        lv.setAdapter(aa);
-
         Intent i = getIntent();
-        String year = i.getStringExtra("year");
-        tvYear.setText(year);
+        int selected = i.getIntExtra("selected", 0);
+        modules = new ArrayList<Modules>();
+
+        //Create Array in Modules Array
+        if(selected == 2) {
+            modules = new ArrayList<Modules>();
+            modules.add(new Modules("C208", true));
+            modules.add(new Modules("C200", false));
+            modules.add(new Modules("C346", true));
+
+            aa = new ModuleAdapter(this, R.layout.row, modules);
+            lv.setAdapter(aa);
+        }
+        
 
 
 
